@@ -97,8 +97,12 @@ class Login extends Component {
               type={passwordType}
               placeholder="Password"
             />
-            <input onChange={this.onChangeCheckbox} type="checkbox" />
-            <p>Show Password</p>
+            <input
+              id="showPassword"
+              onChange={this.onChangeCheckbox}
+              type="checkbox"
+            />
+            <label htmlFor="showPassword">Show Password</label>
             <LoginButton type="submit">Login</LoginButton>
             {showSubmitError && <p>*{errorMsg}</p>}
           </FormContainer>
