@@ -27,40 +27,44 @@ const Header = () => (
               src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
             />
           </Link>
-          <HeaderContainer space="0" position="space-around">
-            <HeaderButton>
-              <FaAffiliatetheme />
-            </HeaderButton>
-            <HeaderButton>
+          <HeaderContainer as="ul" space="0" position="space-around">
+            <li>
+              <HeaderButton data-testid="theme">
+                <FaAffiliatetheme />
+              </HeaderButton>
+            </li>
+            <li>
               <ProfileImg
                 alt="profile"
                 src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png"
               />
-            </HeaderButton>
-            <Popup
-              modal
-              trigger={
-                <LogoutBtn className="trigger-button" type="button">
-                  Logout
-                </LogoutBtn>
-              }
-            >
-              {close => (
-                <>
-                  <div>
-                    <p>Are you sure, you want to Logout?</p>
-                  </div>
-                  <button
-                    type="button"
-                    className="trigger-button"
-                    onClick={() => close()}
-                  >
-                    Close
-                  </button>
-                  <button type="button">Confirm</button>
-                </>
-              )}
-            </Popup>
+            </li>
+            <li>
+              <Popup
+                modal
+                trigger={
+                  <LogoutBtn className="trigger-button" type="button">
+                    Logout
+                  </LogoutBtn>
+                }
+              >
+                {close => (
+                  <>
+                    <div>
+                      <p>Are you sure, you want to Logout?</p>
+                    </div>
+                    <button
+                      type="button"
+                      className="trigger-button"
+                      onClick={() => close()}
+                    >
+                      Close
+                    </button>
+                    <button type="button">Confirm</button>
+                  </>
+                )}
+              </Popup>
+            </li>
           </HeaderContainer>
         </HeaderContainer>
       )
