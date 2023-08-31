@@ -34,7 +34,7 @@ const SideBar = () => (
       </Link>
     </BarContainer>
     <BarContainer height="0" position="space-around">
-      <h1>CONTACT US</h1>
+      <p>CONTACT US</p>
       <div>
         <StyledImg
           src="https://assets.ccbp.in/frontend/react-js/nxt-watch-facebook-logo-img.png"

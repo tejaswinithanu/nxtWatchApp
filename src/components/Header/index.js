@@ -1,4 +1,5 @@
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
+import Cookies from 'js-cookie'
 
 import Popup from 'reactjs-popup'
 
@@ -15,21 +16,29 @@ import {
   LogoutBtn,
 } from './styledComponents'
 
-const Header = () => (
+const Header = props => (
   <ThemeContext.Consumer>
     {value => {
-      const {changeTheme} = value
+      const {changeTheme, isDark} = value
+      const onClickTheme = () => {
+        changeTheme()
+      }
+      const onClickLogout = () => {
+        Cookies.remove('jwt_token')
+        const {history} = props
+        history.replace('/login')
+      }
+      const websiteLogo = isDark
+        ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
+        : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
       return (
         <HeaderContainer as="nav" space="15" position="space-between">
           <Link to="/">
-            <BrandLogo
-              alt="website logo"
-              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-            />
+            <BrandLogo alt="website logo" src={websiteLogo} />
           </Link>
           <HeaderContainer as="ul" space="0" position="space-around">
             <li>
-              <HeaderButton data-testid="theme">
+              <HeaderButton onClick={onClickTheme} data-testid="theme">
                 <FaAffiliatetheme />
               </HeaderButton>
             </li>
@@ -58,9 +67,11 @@ const Header = () => (
                       className="trigger-button"
                       onClick={() => close()}
                     >
-                      Close
+                      Cancel
                     </button>
-                    <button type="button">Confirm</button>
+                    <button onClick={onClickLogout} type="button">
+                      Confirm
+                    </button>
                   </>
                 )}
               </Popup>
@@ -72,4 +83,4 @@ const Header = () => (
   </ThemeContext.Consumer>
 )
 
-export default Header
+export default withRouter(Header)
