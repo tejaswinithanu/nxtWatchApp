@@ -7,6 +7,9 @@ import Home from './components/Home'
 import NotFound from './components/NotFound'
 import ProtectedRoute from './components/ProtectedRoute'
 import ThemeContext from './context/ThemeContext'
+import Trending from './components/Trending'
+import Gaming from './components/Gaming'
+import VideoItemDetails from './components/VideoItemDetails'
 import './App.css'
 
 // Replace your code here
@@ -24,6 +27,13 @@ class App extends Component {
         <Switch>
           <Route exact path="/login" component={Login} />
           <ProtectedRoute exact path="/" component={Home} />
+          <ProtectedRoute exact path="/trending" component={Trending} />
+          <ProtectedRoute exact path="/gaming" component={Gaming} />
+          <ProtectedRoute
+            exact
+            path="/videos/:id"
+            component={VideoItemDetails}
+          />
           <Route component={NotFound} />
         </Switch>
       </ThemeContext.Provider>
